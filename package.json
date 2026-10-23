@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "description": "本地 SSH SOCKS 代理管理面板",
-  "scripts": { "start": "node server.js" }
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT"
 }
