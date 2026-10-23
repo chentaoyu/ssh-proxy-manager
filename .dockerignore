@@ -1,0 +1,10 @@
+proxies.json
+logs
+data
+ssh
+.askpass.sh
+node_modules
+.git
+design
+README.md
+.DS_Store

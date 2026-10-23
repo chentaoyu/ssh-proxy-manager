@@ -1,0 +1,19 @@
+services:
+  ssh-proxy-manager:
+    build: .
+    image: ssh-proxy-manager
+    container_name: ssh-proxy-manager
+    restart: unless-stopped
+    # 全部只映射到 127.0.0.1，仅本机可访问；代理端口和 DNS 端口需在 17870-17879 内
+    ports:
+      - "127.0.0.1:17910:17900"                 # 管理面板
+      - "127.0.0.1:17870-17879:17870-17879"     # SOCKS 代理
+      - "127.0.0.1:17870-17879:17870-17879/udp" # 加密 DNS
+    environment:
+      # 面板访问密码（Basic 认证，用户名任意），留空则无需登录
+      - PANEL_PASSWORD=
+    volumes:
+      # 配置（含已保存密码）与日志
+      - ./data:/data
+      # 私钥登录时挂载，目录内放私钥（权限 600）和 known_hosts
+      # - ./ssh:/root/.ssh
